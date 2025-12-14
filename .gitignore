@@ -8,8 +8,6 @@ dist/
 *.lib
 gophpffi.exe
 gophpffi
-gophp.exe
-gophp
 
 # Go build cache
 go.sum
