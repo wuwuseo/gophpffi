@@ -331,6 +331,8 @@ func runNew(cmd *cobra.Command, args []string) error {
 - ✅ 支持配置文件驱动
 - ✅ 自动类型映射
 - ✅ 跨平台构建支持
+- ✅ 双语文档体系（中文/英文）
+- ✅ MIT 开源许可证
 
 ### 从旧版本迁移
 
@@ -380,12 +382,35 @@ func runNew(cmd *cobra.Command, args []string) error {
 ## 技术支持
 
 ### 文档资源
-- `README.md` - 用户快速入门
-- `CLI-README.md` - CLI 完整文档
-- `QUICK-REF.md` - 快速参考
-- `AGENTS.MD` - 本开发指南
+- `README.md` - 用户指南（中文）
+- `README_EN.MD` - 用户指南（英文）
+- `AGENTS.MD` - 开发指南（中文）
+- `AGENTS_EN.MD` - 开发指南（英文）
+- `LICENSE` - MIT 许可证
+
+## 项目文件说明
+
+- `gophpffi` - CLI 工具（命令行界面）
+- `cmd/gophp/` - CLI 工具源代码
+- `generator/main.go` - 代码生成器源码
+- `.gophp.yaml` - 项目配置文件
+- `README.md` - 用户指南（中文）
+- `README_EN.MD` - 用户指南（英文）
+- `AGENTS.MD` - 开发指南（中文）
+- `AGENTS_EN.MD` - 开发指南（英文）
+- `LICENSE` - MIT 许可证
+- `Makefile` - 构建自动化
 
 ### 问题反馈
+- GitHub Issues: https://github.com/wuwuseo/gophpffi/issues
 - 检查现有文档
 - 查看常见问题
 - 提供详细的错误信息和环境描述
+
+## 许可证
+
+MIT License
+
+Copyright (c) 2025 wuwuseo
+
+详见 [LICENSE](LICENSE) 文件。

@@ -2,8 +2,6 @@
 
 A CLI tool to generate PHP FFI bindings for Go shared libraries.
 
-> **Note:** This project now uses the `gophpffi` CLI tool. See [CLI-README.md](CLI-README.md) for complete documentation.
-
 ## Quick Start
 
 ### 1. Install the CLI Tool
@@ -88,7 +86,7 @@ gophpffi build
 gophpffi make
 ```
 
-For detailed CLI documentation, see [CLI-README.md](CLI-README.md).
+For detailed CLI documentation, see the [Advanced Usage](#advanced-usage) section below.
 
 ## Example
 
@@ -464,7 +462,9 @@ make test
 
 ## License
 
-[Your License Here]
+MIT License - See LICENSE file for details
+
+Copyright (c) 2025 wuwuseo
 
 ## Support
 

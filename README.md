@@ -2,8 +2,6 @@
 
 一个用于为 Go 共享库生成 PHP FFI 绑定的 CLI 工具。
 
-> **注意：** 本项目现在使用 `gophpffi` CLI 工具。完整文档请查看 [CLI-README.md](CLI-README.md)。
-
 ## 快速开始
 
 ### 1. 安装 CLI 工具
@@ -88,7 +86,19 @@ gophpffi build
 gophpffi make
 ```
 
-详细的 CLI 文档请查看 [CLI-README.md](CLI-README.md)。
+## 配置文件
+
+项目使用 `.gophp.yaml` 配置文件：
+
+```yaml
+service: ServiceName        # 服务名称
+source: ServiceName.go      # Go 源文件路径
+output:
+  dir: dist                 # 输出目录
+  lib_dir: dist/lib         # 库文件目录
+```
+
+你可以手动编辑此文件来自定义构建设置。
 
 ## 示例
 
@@ -106,7 +116,7 @@ package main
 */
 import "C"
 
-//go:generate cmd /c generate.bat User.go
+//go:generate gophpffi generate User.go
 
 // GetUserName returns a user name
 //
@@ -173,11 +183,115 @@ echo $name; // Output: User_123
 - `cmd/gophp/` - CLI 工具源代码
 - `generator/main.go` - 代码生成器源码
 - `.gophp.yaml` - 项目配置文件
-- `CLI-README.md` - 完整 CLI 文档
-- `QUICK-REF.md` - 快速参考指南
+- `AGENTS.MD` - 开发指南（中文）
+- `AGENTS_EN.MD` - 开发指南（英文）
+- `README_EN.MD` - 用户指南（英文）
+- `Makefile` - 构建自动化
+
+## 高级用法
+
+### 构建 CLI 工具
+
+```bash
+# 构建 CLI 工具
+go build -o gophpffi.exe ./cmd/gophp
+
+# 或使用 Makefile
+make build
+```
+
+### 安装到系统
+
+```bash
+# 安装到 GOPATH/bin
+go install ./cmd/gophp
+
+# 或使用 Makefile
+make install
+```
+
+### 多服务支持
+
+你可以在同一项目中创建多个服务：
+
+```bash
+gophpffi init UserService
+gophpffi init ProductService
+gophpffi init OrderService
+```
+
+为不同服务构建时，需要指定源文件：
+
+```bash
+gophpffi generate UserService.go
+gophpffi build UserService.go
+```
 
 ## 系统要求
 
 - Go 1.16 或更高版本
-- Windows（用于构建 .dll 文件）
+- Windows（用于构建 .dll 文件）、Linux（.so）或 macOS（.dylib）
 - PHP 7.4 或更高版本，需启用 FFI 扩展
+
+### 启用 PHP FFI
+
+在 `php.ini` 中：
+```ini
+extension=ffi
+ffi.enable=true
+```
+
+检查 FFI 是否已启用：
+```bash
+php -m | grep ffi
+```
+
+## 最佳实践
+
+### 1. 函数设计
+- 保持函数签名简单
+- 尽可能使用基本类型（int、string、bool）
+- 避免复杂的嵌套结构
+- 返回错误码而非 Go 的 error 类型
+
+### 2. 错误处理
+
+**在 Go 中：**
+```go
+//export ProcessData
+func ProcessData(data string) int {
+    if data == "" {
+        return -1  // 错误码
+    }
+    // 处理数据...
+    return 0  // 成功
+}
+```
+
+**在 PHP 中：**
+```php
+$result = $service->ProcessData($data);
+if ($result < 0) {
+    throw new Exception("处理失败，错误码: " . $result);
+}
+```
+
+### 3. 性能优化
+- 减少跨语言调用次数
+- 尽可能批量处理
+- 使用持久化 PHP 进程（PHP-FPM）
+- 缓存 FFI 库实例
+
+## 许可证
+
+MIT License - 详见 LICENSE 文件
+
+## 贡献
+
+欢迎贡献！请查看 [AGENTS.MD](AGENTS.MD) 了解开发指南。
+
+## 支持
+
+- 开发文档：[AGENTS.MD](AGENTS.MD)（中文）、[AGENTS_EN.MD](AGENTS_EN.MD)（英文）
+- 英文文档：[README_EN.MD](README_EN.MD)
+- 问题反馈：[GitHub Issues](https://github.com/wuwuseo/gophpffi/issues)

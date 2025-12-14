@@ -331,6 +331,8 @@ func runNew(cmd *cobra.Command, args []string) error {
 - ✅ Configuration file-driven support
 - ✅ Automatic type mapping
 - ✅ Cross-platform build support
+- ✅ Bilingual documentation system (Chinese/English)
+- ✅ MIT open source license
 
 ### Migrating from Old Versions
 
@@ -380,16 +382,25 @@ func runNew(cmd *cobra.Command, args []string) error {
 ## Technical Support
 
 ### Documentation Resources
-- `README.md` - User quick start guide
-- `CLI-README.md` - Complete CLI documentation
-- `QUICK-REF.md` - Quick reference
+- `README.md` - User guide (Chinese)
+- `README_EN.MD` - User guide (English)
 - `AGENTS.MD` - Development guide (Chinese)
 - `AGENTS_EN.MD` - Development guide (English)
+- `LICENSE` - MIT License
 
 ### Issue Reporting
+- GitHub Issues: https://github.com/wuwuseo/gophpffi/issues
 - Check existing documentation
 - Review common issues
 - Provide detailed error information and environment description
+
+## License
+
+MIT License
+
+Copyright (c) 2025 wuwuseo
+
+See [LICENSE](LICENSE) file for details.
 
 ## API Reference
 
