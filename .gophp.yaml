@@ -1,0 +1,6 @@
+# Go-PHP FFI Service Configuration
+service: TestService
+source: TestService.go
+output:
+  dir: dist
+  lib_dir: dist/lib

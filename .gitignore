@@ -1,0 +1,40 @@
+# Binaries and build artifacts
+dist/
+*.so
+*.dylib
+*.dll
+*.h
+*.a
+*.lib
+gophpffi.exe
+gophpffi
+gophp.exe
+gophp
+
+# Go build cache
+go.sum
+
+# Generated PHP files (except in dist/)
+/platform_detect.php
+/ffi_bindings.php
+/loader.php
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS files
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.log
+
+# Test files
+test_*.php
+debug_*.php
