@@ -1,4 +1,4 @@
-module serviceLib
+module github.com/wuwuseo/gophpffi
 
 go 1.25.1
 
